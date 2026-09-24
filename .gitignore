@@ -1,0 +1,8 @@
+.conda/
+datasets/
+models/
+outputs/
+third_party/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
