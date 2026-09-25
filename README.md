@@ -21,3 +21,7 @@
 ## 工作记录
 
 每次工作的实际进展和下一步都写在 [工作记录.md](工作记录.md)，按日期保留历史。
+
+## GitHub 同步
+
+公开仓库：[text-guided-video-anomaly-detection](https://github.com/c37958640-hash/text-guided-video-anomaly-detection)。每次工作结束更新工作记录，按需提交代码和文档，再推送 main 到 GitHub。
