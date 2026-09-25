@@ -8,12 +8,13 @@
 - 本地 Python：.conda/local，Python 3.10.21。
 - 官方参考仓库：third_party/Paper-AnyAnomaly，提交 ec7e9fc36e56ca16a5fa08386e368a7e4d18dbb0。
 - 正式 Qwen/vLLM 推理计划在云端 Linux GPU 上进行。
+- Avenue 测试视频已转为 15,324 张 JPG；常规五类事件对应 18 个视频，按 24 帧分段共有 507 个完整片段。
 
 ## 下一步
 
-1. 把 Avenue 视频整理为参考代码读取的 JPG 帧目录。
-2. 核对帧序、标签、24 帧分段和尾部帧处理。
-3. 在少量 JPG 帧上对照 AnyAnomaly 的 CLIP 预处理，再准备完整评估。
+1. 核对基线运行还缺少哪些软件依赖，安装前先确认路径。
+2. 用一个视频和一种事件文本试跑完整评分链路。
+3. 明确正式评估对不足 24 帧尾段的处理口径。
 
 大型数据、模型权重、运行结果和本地环境不提交 Git。Windows 本地测试的依赖版本见 [requirements-windows.txt](requirements-windows.txt)。
 
