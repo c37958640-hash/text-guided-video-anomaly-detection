@@ -12,9 +12,9 @@
 
 ## 下一步
 
-1. 使用固定的事件文字和标签，在更多 Avenue 视频上做本地检查，记录不同视频的差异。
-2. 正式 Qwen/vLLM 评分前，确认 Linux GPU 环境和软件、模型下载位置。
-3. 正式评估需覆盖规定的视频与事件，并说明不足 24 帧的尾段如何处理。
+1. 检查多视频结果中的低分案例，先看跳舞 18 号和靠近镜头 19 号的片段、标签与分数变化。
+2. 根据失败案例决定下一轮改进；正式 Qwen/vLLM 评分前，确认 Linux GPU 环境和软件、模型下载位置。
+3. 正式评估继续写清不同视频、事件及不足 24 帧尾段的处理口径。
 
 ## 单视频 CLIP 检查
 
@@ -27,6 +27,16 @@
 如需更换视频或事件文字，可使用 `--video-id` 和 `--text`。当文字描述的是其他事件时，也要用 `--event` 选择对应标签，可选 `bicycle`、`dancing`、`running`、`throwing`、`too_close`。运行 `--help` 可查看全部参数。脚本使用项目中已有的 JPG 帧和 CLIP 权重，不会自行下载模型。
 
 结果保存在 `outputs/clip_16_bicycle.json`（参数改变时文件名也相应改变），列出每个完整 24 帧片段的起止帧和分数；末尾不足 24 帧的部分不参与 AUROC，并单独统计被排除的正例。若纳入评估的帧只有一种标签，AUROC 显示为无法计算，片段分数仍会保存。这是 CLIP 单视频诊断，不是 AnyAnomaly 的 Qwen/vLLM 正式结果。
+
+## 五类事件的多视频检查
+
+五句固定事件描述在 [配置文件](configs/avenue_clip_prompts.json)，多视频脚本会把 18 个常规视频分别与五句描述比较。先在项目根目录运行：
+
+```powershell
+.\.conda\local\python.exe -m scripts.evaluate_clip_avenue
+```
+
+结果说明、五类整体 AUROC 和含正例视频的单视频结果见 [Avenue CLIP 检查报告](reports/avenue_clip_5events_2026-09-25.md)。详细片段分数保存在本地 `outputs/clip_avenue_5events.json`，不会提交到 Git。这仍是 CLIP 探索性检查，不是 AnyAnomaly 论文的完整基线。
 
 大型数据、模型权重、运行结果和本地环境不提交 Git。Windows 本地测试的依赖版本见 [requirements-windows.txt](requirements-windows.txt)。
 
