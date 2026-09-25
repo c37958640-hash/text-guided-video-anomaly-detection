@@ -1,0 +1,8 @@
+{
+  "description": "Fixed English prompts for exploratory CLIP-only Avenue evaluation; chosen before scoring, not official AnyAnomaly prompts.",
+  "bicycle": "a person riding a bicycle",
+  "dancing": "a person dancing",
+  "running": "a person running",
+  "throwing": "a person throwing an object",
+  "too_close": "a person walking too close to the camera"
+}
