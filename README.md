@@ -11,11 +11,11 @@
 
 ## 下一步
 
-1. 获取 CUHK Avenue 原始数据，核对官方仓库 ground_truth 中 C-Ave 的五类标注。
-2. 检查视频名称排序、帧数和标签长度。
-3. 在本地完成短视频解码与 CLIP 小样本测试。
+1. 把 Avenue 视频整理为参考代码读取的 JPG 帧目录。
+2. 核对帧序、标签、24 帧分段和尾部帧处理。
+3. 在少量 JPG 帧上对照 AnyAnomaly 的 CLIP 预处理，再准备完整评估。
 
-大型数据、模型权重、运行结果和本地环境不提交 Git。
+大型数据、模型权重、运行结果和本地环境不提交 Git。Windows 本地测试的依赖版本见 [requirements-windows.txt](requirements-windows.txt)。
 
 ## 工作记录
 
