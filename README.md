@@ -9,12 +9,25 @@
 - 官方参考仓库：third_party/Paper-AnyAnomaly，提交 ec7e9fc36e56ca16a5fa08386e368a7e4d18dbb0。
 - 正式 Qwen/vLLM 推理计划在云端 Linux GPU 上进行。
 - Avenue 测试视频已转为 15,324 张 JPG；常规五类事件对应 18 个视频，按 24 帧分段共有 507 个完整片段。
+- 单视频 Qwen 入口的 Windows 离线检查已通过第 16 号视频；尚未运行 Qwen 模型。拟用模型是作者脚本默认的 Qwen2.5-VL-3B-Instruct。
 
 ## 下一步
 
 1. 按 [AnyAnomaly Qwen 的 Linux 运行准备](doc/AnyAnomaly_Qwen_Linux_运行准备.md) 确认 Linux GPU 环境和实际目录；下载任何软件或模型前，先征得用户对安装及缓存路径的确认。
-2. 准备可单独运行第 16 号视频、保存原始回答和运行进度的入口，再做 740 帧输入、720 帧分数的流程检查。
+2. 将代码、帧、标签和已有 CLIP 权重放到选定的 Linux 目录；安装、模型路径确认后，再用单视频入口做真正的 Qwen 推理检查。
 3. 流程检查通过后运行五类事件；固定参数成绩与作者默认的测试标签选优成绩分别报告。
+
+## Qwen 单视频入口：先检查本地数据
+
+在 Windows 项目根目录运行下面的命令。它只检查第 16 号视频的 JPG 顺序及骑车标签，不加载 Qwen，也不下载任何东西：
+
+```powershell
+.\.conda\local\python.exe -m scripts.anyanomaly_qwen_single_video --video-id 16 --event bicycle
+```
+
+检查结果在本地 `outputs/anyanomaly/preflight_16_bicycle.json`。现在查得 740 张图片、30 个完整的 24 帧片段、720 个可评分帧；末尾 20 帧不参与，其中 10 帧标为骑车。
+
+将来 Linux GPU 和**本地模型路径**就绪后，入口可加 `--run --qwen-model <已经存在的模型目录>`。它沿用作者的三种画面及 Qwen 问答方式，每段保存三句原始回答和三个分数；中断后用相同命令可从已保存的下一段继续。此功能目前只在 Windows 上用不加载模型的测试验证，真正 Qwen 推理尚未验证。
 
 ## 单视频 CLIP 检查
 
